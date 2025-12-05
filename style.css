@@ -99,131 +99,371 @@ body {
     margin: 40px auto;
     position: relative;
     animation: slideInUp 2s ease-out 0.5s both;
+    perspective: 1000px;
+    text-align: center;
 }
 
 .christmas-tree {
     position: relative;
     display: inline-block;
+    transform-style: preserve-3d;
+    animation: gentleFloat 6s ease-in-out infinite;
 }
 
-/* 星星 */
-.star {
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0px) rotateY(0deg); }
+    50% { transform: translateY(-10px) rotateY(2deg); }
+}
+
+/* 星星和光环 */
+.star-halo {
     position: absolute;
-    top: -30px;
+    top: -45px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 2rem;
-    animation: twinkle 1.5s ease-in-out infinite alternate;
-    z-index: 10;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(255, 215, 0, 0.1) 50%, transparent 100%);
+    border-radius: 50%;
+    animation: haloGlow 2s ease-in-out infinite alternate;
+    z-index: 8;
 }
 
-@keyframes twinkle {
+@keyframes haloGlow {
+    0% { transform: translateX(-50%) scale(1); opacity: 0.5; }
+    100% { transform: translateX(-50%) scale(1.3); opacity: 0.8; }
+}
+
+.star {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    animation: starTwinkle 2s ease-in-out infinite alternate;
+    z-index: 10;
+    text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FFD700;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+}
+
+@keyframes starTwinkle {
     0% {
         transform: translateX(-50%) scale(1) rotate(0deg);
-        opacity: 0.8;
+        opacity: 0.9;
+        text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FFD700;
     }
     100% {
         transform: translateX(-50%) scale(1.2) rotate(180deg);
         opacity: 1;
+        text-shadow: 0 0 30px #FFD700, 0 0 50px #FFD700, 0 0 70px #FFD700;
     }
 }
 
-/* 树的层级 */
+/* 树的分段结构 */
+.tree-section {
+    position: relative;
+    margin-bottom: -15px;
+}
+
 .tree-layer {
     position: relative;
-    margin: -10px auto 5px;
+    margin: -8px auto 3px;
 }
 
 .tree-part {
-    background: linear-gradient(45deg, #0d5016, #228B22, #32CD32);
+    background: linear-gradient(135deg, 
+        #0a4d0f 0%, 
+        #1a5f1f 25%, 
+        #2d7a2d 50%, 
+        #3d8b3d 75%, 
+        #4d9c4d 100%);
     margin: 0 auto;
     position: relative;
-    border-radius: 0 0 50% 50%;
+    border-radius: 0 0 60% 60%;
+    box-shadow: 
+        inset 0 -10px 20px rgba(0, 0, 0, 0.3),
+        0 5px 15px rgba(0, 0, 0, 0.2),
+        0 0 30px rgba(45, 122, 45, 0.3);
+    animation: treeLayerSway 4s ease-in-out infinite;
 }
 
-.layer-1 .tree-part {
-    width: 80px;
-    height: 60px;
+@keyframes treeLayerSway {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(0.5deg); }
+    75% { transform: rotate(-0.5deg); }
 }
 
-.layer-2 .tree-part {
-    width: 120px;
-    height: 80px;
+.tree-shadow {
+    position: absolute;
+    bottom: -5px;
+    left: 10%;
+    right: 10%;
+    height: 8px;
+    background: linear-gradient(ellipse, rgba(0, 0, 0, 0.3) 0%, transparent 100%);
+    border-radius: 50%;
 }
 
-.layer-3 .tree-part {
-    width: 160px;
-    height: 100px;
-}
+/* 第一段 - 顶部 */
+.layer-1-1 .tree-part { width: 60px; height: 45px; }
+.layer-1-2 .tree-part { width: 90px; height: 60px; }
 
-.layer-4 .tree-part {
-    width: 200px;
-    height: 120px;
-}
+/* 第二段 - 中上部 */
+.layer-2-1 .tree-part { width: 100px; height: 70px; }
+.layer-2-2 .tree-part { width: 130px; height: 85px; }
+.layer-2-3 .tree-part { width: 160px; height: 100px; }
 
-/* 树干 */
+/* 第三段 - 底部 */
+.layer-3-1 .tree-part { width: 140px; height: 90px; }
+.layer-3-2 .tree-part { width: 170px; height: 105px; }
+.layer-3-3 .tree-part { width: 200px; height: 120px; }
+.layer-3-4 .tree-part { width: 230px; height: 135px; }
+
+/* 树干和底座 */
 .tree-trunk {
-    width: 40px;
-    height: 60px;
-    background: linear-gradient(45deg, #8B4513, #A0522D);
+    width: 50px;
+    height: 70px;
+    background: linear-gradient(45deg, #654321, #8B4513, #A0522D, #CD853F);
     margin: 0 auto;
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 15px 15px;
+    position: relative;
+    box-shadow: 
+        inset 0 -10px 20px rgba(0, 0, 0, 0.4),
+        0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* 装饰品 */
+.trunk-highlight {
+    position: absolute;
+    top: 10px;
+    left: 8px;
+    width: 8px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+    border-radius: 4px;
+}
+
+.tree-base {
+    width: 80px;
+    height: 20px;
+    background: linear-gradient(45deg, #8B4513, #A0522D, #CD853F);
+    margin: 0 auto;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+/* 高级装饰品 */
+.ornament-group {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .ornament {
     position: absolute;
-    font-size: 1.2rem;
-    animation: swing 3s ease-in-out infinite;
-    z-index: 5;
+    font-size: 1.4rem;
+    animation: ornamentSwing 4s ease-in-out infinite;
+    z-index: 6;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease;
 }
 
-.ornament-1 { top: 40px; left: 30px; animation-delay: 0s; }
-.ornament-2 { top: 60px; right: 25px; animation-delay: 0.5s; }
-.ornament-3 { top: 100px; left: 20px; animation-delay: 1s; }
-.ornament-4 { top: 120px; right: 15px; animation-delay: 1.5s; }
-.ornament-5 { top: 160px; left: 10px; animation-delay: 2s; }
-.ornament-6 { top: 180px; right: 5px; animation-delay: 2.5s; }
-
-@keyframes swing {
-    0%, 100% { transform: rotate(-5deg); }
-    50% { transform: rotate(5deg); }
+.ornament:hover {
+    transform: scale(1.2) rotate(10deg);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
 }
 
-/* 彩灯 */
+@keyframes ornamentSwing {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+}
+
+/* 装饰品位置 */
+.ornament-1 { top: 30px; left: 25px; animation-delay: 0s; }
+.ornament-2 { top: 50px; right: 20px; animation-delay: 0.3s; }
+.ornament-3 { top: 80px; left: 15px; animation-delay: 0.6s; }
+.ornament-4 { top: 110px; right: 10px; animation-delay: 0.9s; }
+.ornament-5 { top: 140px; left: 5px; animation-delay: 1.2s; }
+.ornament-6 { top: 170px; right: 0px; animation-delay: 1.5s; }
+.ornament-7 { top: 200px; left: 10px; animation-delay: 1.8s; }
+.ornament-8 { top: 230px; right: 15px; animation-delay: 2.1s; }
+.ornament-9 { top: 90px; left: 50px; animation-delay: 2.4s; }
+.ornament-10 { top: 160px; right: 45px; animation-delay: 2.7s; }
+
+/* 特殊装饰品效果 */
+.crystal-ball { 
+    animation: crystalShine 3s ease-in-out infinite;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes crystalShine {
+    0%, 100% { opacity: 0.8; transform: rotate(-3deg); }
+    50% { opacity: 1; transform: rotate(3deg) scale(1.1); }
+}
+
+.golden-ball {
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+    animation: goldenGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes goldenGlow {
+    0% { text-shadow: 0 0 15px rgba(255, 215, 0, 0.8); }
+    100% { text-shadow: 0 0 25px rgba(255, 215, 0, 1); }
+}
+
+/* 彩带装饰 */
+.ribbon {
+    position: absolute;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6bcf7f, #4ecdc4, #45b7d1, #96ceb4);
+    border-radius: 2px;
+    animation: ribbonShimmer 3s ease-in-out infinite;
+    z-index: 4;
+}
+
+.ribbon-1 {
+    top: 80px;
+    left: 20px;
+    right: 20px;
+    transform: rotate(-5deg);
+    animation-delay: 0s;
+}
+
+.ribbon-2 {
+    top: 150px;
+    left: 15px;
+    right: 15px;
+    transform: rotate(3deg);
+    animation-delay: 1s;
+}
+
+.ribbon-3 {
+    top: 220px;
+    left: 25px;
+    right: 25px;
+    transform: rotate(-2deg);
+    animation-delay: 2s;
+}
+
+@keyframes ribbonShimmer {
+    0%, 100% { opacity: 0.7; transform: rotate(var(--rotation, 0deg)) scaleY(1); }
+    50% { opacity: 1; transform: rotate(var(--rotation, 0deg)) scaleY(1.1); }
+}
+
+/* 高级彩灯系统 */
+.light-string {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 7;
+}
+
 .light {
     position: absolute;
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    animation: blink 2s infinite;
-    z-index: 6;
+    animation: advancedBlink 3s infinite;
+    z-index: 7;
+    box-shadow: 0 0 15px currentColor;
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-.light-1 { top: 50px; left: 45px; background: #ff0000; animation-delay: 0s; }
-.light-2 { top: 70px; right: 40px; background: #00ff00; animation-delay: 0.25s; }
-.light-3 { top: 110px; left: 35px; background: #0000ff; animation-delay: 0.5s; }
-.light-4 { top: 130px; right: 30px; background: #ffff00; animation-delay: 0.75s; }
-.light-5 { top: 170px; left: 25px; background: #ff00ff; animation-delay: 1s; }
-.light-6 { top: 190px; right: 20px; background: #00ffff; animation-delay: 1.25s; }
-.light-7 { top: 90px; left: 60px; background: #ffa500; animation-delay: 1.5s; }
-.light-8 { top: 150px; right: 55px; background: #ff69b4; animation-delay: 1.75s; }
+/* 第一串彩灯 */
+.light-1-1 { top: 45px; left: 40px; background: #ff4757; animation-delay: 0s; }
+.light-1-2 { top: 55px; left: 60px; background: #ffa502; animation-delay: 0.2s; }
+.light-1-3 { top: 65px; left: 80px; background: #fffa65; animation-delay: 0.4s; }
+.light-1-4 { top: 55px; right: 60px; background: #7bed9f; animation-delay: 0.6s; }
+.light-1-5 { top: 45px; right: 40px; background: #70a1ff; animation-delay: 0.8s; }
 
-@keyframes blink {
-    0%, 50% { 
+/* 第二串彩灯 */
+.light-2-1 { top: 100px; left: 30px; background: #ff6b81; animation-delay: 0.3s; }
+.light-2-2 { top: 115px; left: 50px; background: #a4b0be; animation-delay: 0.5s; }
+.light-2-3 { top: 130px; left: 70px; background: #f1c40f; animation-delay: 0.7s; }
+.light-2-4 { top: 130px; right: 70px; background: #e74c3c; animation-delay: 0.9s; }
+.light-2-5 { top: 115px; right: 50px; background: #9b59b6; animation-delay: 1.1s; }
+.light-2-6 { top: 100px; right: 30px; background: #3498db; animation-delay: 1.3s; }
+
+/* 第三串彩灯 */
+.light-3-1 { top: 170px; left: 20px; background: #ff9ff3; animation-delay: 0.4s; }
+.light-3-2 { top: 185px; left: 40px; background: #54a0ff; animation-delay: 0.6s; }
+.light-3-3 { top: 200px; left: 60px; background: #5f27cd; animation-delay: 0.8s; }
+.light-3-4 { top: 210px; left: 80px; background: #00d2d3; animation-delay: 1.0s; }
+.light-3-5 { top: 200px; right: 60px; background: #ff9f43; animation-delay: 1.2s; }
+.light-3-6 { top: 185px; right: 40px; background: #10ac84; animation-delay: 1.4s; }
+.light-3-7 { top: 170px; right: 20px; background: #ee5a6f; animation-delay: 1.6s; }
+
+@keyframes advancedBlink {
+    0%, 70% { 
         opacity: 1; 
-        box-shadow: 0 0 10px currentColor;
+        transform: scale(1);
+        box-shadow: 0 0 15px currentColor, 0 0 25px currentColor;
     }
-    51%, 100% { 
-        opacity: 0.3; 
-        box-shadow: none;
+    71%, 100% { 
+        opacity: 0.4; 
+        transform: scale(0.8);
+        box-shadow: 0 0 5px currentColor;
     }
 }
 
 .lights-off .light {
     animation: none;
-    opacity: 0.3;
+    opacity: 0.2;
     box-shadow: none;
+    transform: scale(0.8);
+}
+
+/* 树上雪花装饰 */
+.tree-snow {
+    position: absolute;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    animation: treeSnowFloat 4s ease-in-out infinite;
+    z-index: 5;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.snow-1 { top: 60px; left: 10px; animation-delay: 0s; }
+.snow-2 { top: 120px; right: 5px; animation-delay: 1s; }
+.snow-3 { top: 180px; left: 15px; animation-delay: 2s; }
+.snow-4 { top: 240px; right: 10px; animation-delay: 3s; }
+
+@keyframes treeSnowFloat {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+        opacity: 0.7; 
+    }
+    50% { 
+        transform: translateY(-8px) rotate(180deg); 
+        opacity: 1; 
+    }
+}
+
+/* 树的光晕效果 */
+.tree-glow {
+    position: absolute;
+    top: -20px;
+    left: -50px;
+    right: -50px;
+    bottom: -30px;
+    background: radial-gradient(ellipse, rgba(45, 122, 45, 0.2) 0%, rgba(45, 122, 45, 0.1) 50%, transparent 100%);
+    border-radius: 50%;
+    animation: treeGlow 5s ease-in-out infinite alternate;
+    z-index: 1;
+}
+
+@keyframes treeGlow {
+    0% { 
+        opacity: 0.3; 
+        transform: scale(1); 
+    }
+    100% { 
+        opacity: 0.6; 
+        transform: scale(1.1); 
+    }
 }
 
 /* 礼物盒 */
