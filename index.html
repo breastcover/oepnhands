@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 圣诞快乐 - Merry Christmas 🎄</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 雪花容器 -->
+    <div id="snowflakes"></div>
+    
+    <!-- 主要内容 -->
+    <div class="container">
+        <!-- 标题区域 -->
+        <header class="header">
+            <h1 class="main-title">🎄 圣诞快乐 🎄</h1>
+            <h2 class="sub-title">Merry Christmas & Happy New Year</h2>
+        </header>
+
+        <!-- 圣诞树区域 -->
+        <div class="christmas-tree-container">
+            <div class="christmas-tree">
+                <!-- 星星 -->
+                <div class="star">⭐</div>
+                
+                <!-- 树的层级 -->
+                <div class="tree-layer layer-1">
+                    <div class="tree-part"></div>
+                </div>
+                <div class="tree-layer layer-2">
+                    <div class="tree-part"></div>
+                </div>
+                <div class="tree-layer layer-3">
+                    <div class="tree-part"></div>
+                </div>
+                <div class="tree-layer layer-4">
+                    <div class="tree-part"></div>
+                </div>
+                
+                <!-- 树干 -->
+                <div class="tree-trunk"></div>
+                
+                <!-- 装饰品 -->
+                <div class="ornament ornament-1">🔴</div>
+                <div class="ornament ornament-2">🟡</div>
+                <div class="ornament ornament-3">🔵</div>
+                <div class="ornament ornament-4">🟢</div>
+                <div class="ornament ornament-5">🟣</div>
+                <div class="ornament ornament-6">🟠</div>
+                
+                <!-- 彩灯 -->
+                <div class="light light-1"></div>
+                <div class="light light-2"></div>
+                <div class="light light-3"></div>
+                <div class="light light-4"></div>
+                <div class="light light-5"></div>
+                <div class="light light-6"></div>
+                <div class="light light-7"></div>
+                <div class="light light-8"></div>
+            </div>
+        </div>
+
+        <!-- 礼物盒区域 -->
+        <div class="gifts-container">
+            <div class="gift gift-1">
+                <div class="gift-box"></div>
+                <div class="gift-ribbon"></div>
+                <div class="gift-bow"></div>
+            </div>
+            <div class="gift gift-2">
+                <div class="gift-box"></div>
+                <div class="gift-ribbon"></div>
+                <div class="gift-bow"></div>
+            </div>
+            <div class="gift gift-3">
+                <div class="gift-box"></div>
+                <div class="gift-ribbon"></div>
+                <div class="gift-bow"></div>
+            </div>
+        </div>
+
+        <!-- 祝福语区域 -->
+        <div class="wishes-container">
+            <div class="wish-card">
+                <h3>🎅 圣诞祝福 🎅</h3>
+                <p>愿你的圣诞充满温馨，新年拥有美好！</p>
+                <p>May your Christmas be filled with warmth and your New Year be wonderful!</p>
+            </div>
+        </div>
+
+        <!-- 控制按钮 -->
+        <div class="controls">
+            <button id="musicBtn" class="control-btn">🎵 播放音乐</button>
+            <button id="snowBtn" class="control-btn">❄️ 雪花开关</button>
+            <button id="lightsBtn" class="control-btn">💡 彩灯开关</button>
+        </div>
+    </div>
+
+    <!-- 背景音乐 -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+        <!-- 备用音频源 -->
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

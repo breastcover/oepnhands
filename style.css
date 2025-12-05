@@ -1,0 +1,435 @@
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Dancing Script', cursive;
+    background: linear-gradient(135deg, #0c1445 0%, #1e3c72 50%, #2a5298 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* 雪花动画 */
+#snowflakes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: white;
+    font-size: 1em;
+    animation: fall linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+/* 主容器 */
+.container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* 标题样式 */
+.header {
+    margin-bottom: 40px;
+    animation: fadeInDown 2s ease-out;
+}
+
+.main-title {
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 4rem;
+    color: #fff;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.sub-title {
+    font-size: 1.8rem;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), 0 0 20px #fff, 0 0 30px #fff;
+    }
+    to {
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), 0 0 30px #fff, 0 0 40px #fff, 0 0 50px #ffd700;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 圣诞树容器 */
+.christmas-tree-container {
+    margin: 40px auto;
+    position: relative;
+    animation: slideInUp 2s ease-out 0.5s both;
+}
+
+.christmas-tree {
+    position: relative;
+    display: inline-block;
+}
+
+/* 星星 */
+.star {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    animation: twinkle 1.5s ease-in-out infinite alternate;
+    z-index: 10;
+}
+
+@keyframes twinkle {
+    0% {
+        transform: translateX(-50%) scale(1) rotate(0deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateX(-50%) scale(1.2) rotate(180deg);
+        opacity: 1;
+    }
+}
+
+/* 树的层级 */
+.tree-layer {
+    position: relative;
+    margin: -10px auto 5px;
+}
+
+.tree-part {
+    background: linear-gradient(45deg, #0d5016, #228B22, #32CD32);
+    margin: 0 auto;
+    position: relative;
+    border-radius: 0 0 50% 50%;
+}
+
+.layer-1 .tree-part {
+    width: 80px;
+    height: 60px;
+}
+
+.layer-2 .tree-part {
+    width: 120px;
+    height: 80px;
+}
+
+.layer-3 .tree-part {
+    width: 160px;
+    height: 100px;
+}
+
+.layer-4 .tree-part {
+    width: 200px;
+    height: 120px;
+}
+
+/* 树干 */
+.tree-trunk {
+    width: 40px;
+    height: 60px;
+    background: linear-gradient(45deg, #8B4513, #A0522D);
+    margin: 0 auto;
+    border-radius: 0 0 10px 10px;
+}
+
+/* 装饰品 */
+.ornament {
+    position: absolute;
+    font-size: 1.2rem;
+    animation: swing 3s ease-in-out infinite;
+    z-index: 5;
+}
+
+.ornament-1 { top: 40px; left: 30px; animation-delay: 0s; }
+.ornament-2 { top: 60px; right: 25px; animation-delay: 0.5s; }
+.ornament-3 { top: 100px; left: 20px; animation-delay: 1s; }
+.ornament-4 { top: 120px; right: 15px; animation-delay: 1.5s; }
+.ornament-5 { top: 160px; left: 10px; animation-delay: 2s; }
+.ornament-6 { top: 180px; right: 5px; animation-delay: 2.5s; }
+
+@keyframes swing {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+/* 彩灯 */
+.light {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: blink 2s infinite;
+    z-index: 6;
+}
+
+.light-1 { top: 50px; left: 45px; background: #ff0000; animation-delay: 0s; }
+.light-2 { top: 70px; right: 40px; background: #00ff00; animation-delay: 0.25s; }
+.light-3 { top: 110px; left: 35px; background: #0000ff; animation-delay: 0.5s; }
+.light-4 { top: 130px; right: 30px; background: #ffff00; animation-delay: 0.75s; }
+.light-5 { top: 170px; left: 25px; background: #ff00ff; animation-delay: 1s; }
+.light-6 { top: 190px; right: 20px; background: #00ffff; animation-delay: 1.25s; }
+.light-7 { top: 90px; left: 60px; background: #ffa500; animation-delay: 1.5s; }
+.light-8 { top: 150px; right: 55px; background: #ff69b4; animation-delay: 1.75s; }
+
+@keyframes blink {
+    0%, 50% { 
+        opacity: 1; 
+        box-shadow: 0 0 10px currentColor;
+    }
+    51%, 100% { 
+        opacity: 0.3; 
+        box-shadow: none;
+    }
+}
+
+.lights-off .light {
+    animation: none;
+    opacity: 0.3;
+    box-shadow: none;
+}
+
+/* 礼物盒 */
+.gifts-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px 0;
+    animation: slideInUp 2s ease-out 1s both;
+}
+
+.gift {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gift:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.gift-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.gift-1 .gift-box { background: linear-gradient(45deg, #ff4757, #ff6b7a); }
+.gift-2 .gift-box { background: linear-gradient(45deg, #3742fa, #5352ed); }
+.gift-3 .gift-box { background: linear-gradient(45deg, #2ed573, #7bed9f); }
+
+.gift-ribbon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 100%;
+    background: #ffd700;
+}
+
+.gift-ribbon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 8px;
+    background: #ffd700;
+}
+
+.gift-bow {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 15px;
+    background: #ffd700;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+/* 祝福语卡片 */
+.wishes-container {
+    margin: 40px 0;
+    animation: fadeIn 2s ease-out 1.5s both;
+}
+
+.wish-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.wish-card h3 {
+    font-size: 2rem;
+    color: #ffd700;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.wish-card p {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 控制按钮 */
+.controls {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    animation: fadeIn 2s ease-out 2s both;
+}
+
+.control-btn {
+    background: linear-gradient(45deg, #ff6b7a, #ff4757);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.control-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 71, 87, 0.6);
+}
+
+.control-btn:active {
+    transform: translateY(0);
+}
+
+.control-btn.active {
+    background: linear-gradient(45deg, #2ed573, #7bed9f);
+    box-shadow: 0 4px 15px rgba(46, 213, 115, 0.4);
+}
+
+/* 动画关键帧 */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .sub-title {
+        font-size: 1.2rem;
+    }
+    
+    .gifts-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .control-btn {
+        width: 200px;
+    }
+    
+    .tree-layer .tree-part {
+        transform: scale(0.8);
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .sub-title {
+        font-size: 1rem;
+    }
+    
+    .wish-card {
+        padding: 20px;
+    }
+    
+    .wish-card h3 {
+        font-size: 1.5rem;
+    }
+    
+    .wish-card p {
+        font-size: 1rem;
+    }
+}
